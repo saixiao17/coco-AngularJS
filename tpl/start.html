@@ -1,0 +1,270 @@
+<!--导航条-->
+<div ng-include="'tpl/include/header.html'"></div>
+
+<div class="container">
+    <!--中部轮播图&单图-->
+    <div class="container-content">
+        <div class="img-content pull-left">
+            <img class="img-responsive" src="img/lunbo.jpg" alt="">
+        </div>
+
+        <div id="myCarousel" class="carousel slide pull-right"  ng-init="carousels()">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="/#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="/#myCarousel" data-slide-to="1"></li>
+                <li data-target="/#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="img-responsive" src="img/lunbo1.jpg" alt="">
+                </div>
+                <div class="item">
+                    <img  class="img-responsive"src="img/lunbo2.jpg" alt="First slide">
+                </div>
+                <div class="item">
+                    <img  class="img-responsive"src="img/xuanze2.jpg" alt="Second slide">
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="left carousel-control" href="/#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </a>
+            <a class="right carousel-control" href="/#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="img-carousel"></div>
+    </div>
+
+    <!--分类/新品/热销-->
+    <div class="row all-content">
+        <div class="col-md-3 col-md-offset-2">
+            <ul class="list-content">
+                <li>
+                    <a href="#/main">新品</a>
+                </li>
+                <li class="select">
+                    <a href="">情侣</a>
+                </li>
+                <li>
+                    <a href="">朋友</a>
+                </li>
+                <li class="select">
+                    <a href="">家人</a>
+                </li>
+                <li>
+                    <a href="#/customize">个人定制</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12-img">
+                        <span>新&nbsp;&nbsp;品</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12-down">
+                        <span>SALE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--新品-->
+    <div class="row row-news">
+        <div class="row-news-title">
+            <p class="title">新&nbsp;&nbsp;品</p>
+            <span></span>
+        </div>
+        <div class="news-content">
+            <div class="col-sm-6 col-md-3 row-news-items">
+                <a href="#/show">
+                    <dl>
+                        <dt>
+                            <img class="img-responsive" src="img/sp1.png" alt="">
+                        </dt>
+                        <dd>
+                            <ul>
+                                <li >商品名</li>
+                                <li >价格</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/xp2.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li >商品名</li>
+                            <li >价格</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/xp3.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li >商品名</li>
+                            <li >价格</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items ">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/next.jpg" alt="">
+                    </dt>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <!--巨幕-->
+    <div class="jumu">
+        <a href="">
+            <img class="img-responsive" src="img/jumu.jpg" alt="">
+        </a>
+    </div>
+
+    <!--推荐-->
+    <div class="row row-news">
+        <div class="row-news-title">
+            <p class="title">推&nbsp;&nbsp;荐</p>
+            <!--<span></span>-->
+        </div>
+        <div class="news-content">
+            <div class="col-sm-6 col-md-3 row-news-items-tui">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/tj2.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li >商品名</li>
+                            <li >价格</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items-tui">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/tj3.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li >商品名</li>
+                            <li >价格</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items-tui">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/tj5.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li >商品名</li>
+                            <li >价格</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items-tui">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/tj9.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li >商品名</li>
+                            <li >价格</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items-tui">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/tj7.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li >商品名</li>
+                            <li >价格</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items-tui">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/tj8.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li >商品名</li>
+                            <li >价格</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items-tui">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/tj6.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li >商品名</li>
+                            <li >价格</li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6 col-md-3 row-news-items-tui">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/next.jpg" alt="">
+                    </dt>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <!--宣传图-->
+    <div class="xuanchuan">
+        <div class="img-content pull-left">
+            <img class="img-responsive" src="img/xuanze1.jpg" alt="">
+        </div>
+        <div class="img-content pull-right">
+            <img class="img-responsive" src="img/xuanze2.jpg" alt="">
+        </div>
+        <div class="xuanchuan-img"></div>
+    </div>
+</div>
+
+<div ng-include="'tpl/include/footer.html'"></div>
+<!--<div class="start" ng-click="jump('/main')">-->
+    <!--<h1 class="text-center text-primary">开饭啦</h1>-->
+    <!--<img class="img-responsive center-block" src="img/sp1.png">-->
+<!--</div>-->

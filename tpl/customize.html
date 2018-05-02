@@ -1,0 +1,119 @@
+<script type="text/javascript">
+    $(function(){
+        $( "#tabs" ).tabs();
+    })
+</script>
+
+<div ng-include="'tpl/include/header.html'"></div>
+
+<div class="container">
+    <div class="row" id="tabs">
+        <!--左侧变颜色/画布-->
+        <div class="col-xs-12 col-md-8 " >
+            <div class="row">
+                <div class="col-xs-12 ">
+                    <div class="row">
+                        <div id="dz1" class="cust-img  col-sm-6 ">
+                            <img class="img-responsive" src="img/IMG_0427.JPG" alt="">
+                        </div>
+                        <div id="dz2" class="cust-img  col-sm-6">
+                            <img class="img-responsive" src="img/IMG_0428%202.JPG" alt="">
+                        </div>
+                        <div id="dz3" class="cust-img  col-sm-6">
+                            <img class="img-responsive" src="img/IMG_0429%202.JPG" alt="">
+                        </div>
+                        <div id="dz4" class="cust-img  col-sm-6">
+                            <img class="img-responsive" src="img/IMG_0430%202.JPG" alt="">
+                        </div>
+
+                        <!--画布位置-->
+                        <div class="col-sm-6">
+                            <canvas class="img-responsive" height="400" width="400" id="main"></canvas>
+                        </div>
+                    </div>
+                    <button  type="button" class="btn btn-block btndinzghi">
+                        完成定制
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <!--右侧按钮-->
+        <div class="col-xs-12 col-md-4 yanshi">
+            <div class="clearfix">
+                <h5>主体颜色</h5>
+                <ul>
+                    <li><a href="#dz1">普通样式</a></li>
+                    <li><a href="#dz2">珍珠白</a></li>
+                    <li><a href="#dz3">哑光黑</a></li>
+                    <li><a href="#dz4">釉瓷青</a></li>
+                </ul>
+            </div>
+            <div>
+                <!--画布初始图-->
+                <div style="display:none">
+                    <img class="img-responsive" id="starImg" src="img/IMG_0427.JPG" />
+                </div>
+                <h5>个性签名</h5>
+                <ul>
+                    <li>
+
+                        <input type="text" id="desc" onblur="hechen()" value="" />
+                    </li>
+                    <li>
+                        <a href="" onclick="saveImageInfo()">保存图片</a>
+                        <!--<button onclick="saveImageInfo()">保存图片</button>-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //预加载将图片绘制到画布
+    $(function(){
+        hechen();
+    });
+
+    function hechen(){
+        //获取画布对象
+        var mainCtx = getCanvasContext('main');
+        var maxWidth = mainCtx.width;
+        var maxHeight = mainCtx.height;
+        mainCtx.clearRect(0,0,400,400);
+        //获取图片的实际路径
+        var starImg = new Image();
+        starImg.src=$('#starImg').attr('src');
+        //合成
+        starImg.onload=function(){
+            //先把图片绘制在这里
+            mainCtx.drawImage(starImg,0,0,400,400);
+            //读取用户的文本
+            if($('#desc').val()){
+                //设置用户文本的大小字体等属性
+                mainCtx.font = "small-caps bold 18px STXinwei";
+                //设置用户文本填充颜色
+                mainCtx.fillStyle = "#555";
+                //绘制文字
+                mainCtx.fillText($('#desc').val(),130,198);
+            }
+
+        };
+
+    }
+    //通过id获取canvas对象
+    function getCanvasContext(id){
+        return document.getElementById(id).getContext("2d");
+    }
+    //将画布生成图片
+    function saveImageInfo() {
+        var mycanvas = document.getElementById("main");
+        var image = mycanvas.toDataURL("image");
+        var w=window.open('about:blank','image from canvas');
+        w.document.write("<img src='"+image+"' alt='from canvas'/>");
+    }
+
+</script>
+
+<div ng-include="'tpl/include/footer.html'"></div>

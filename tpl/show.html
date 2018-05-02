@@ -1,0 +1,176 @@
+<div ng-include="'tpl/include/header.html'"></div>
+
+<div class="container">
+    <div class="row show-main">
+        <!--左侧布局-->
+        <div class="col-md-8">
+            <!--面包导航-->
+            <ol class="breadcrumb">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">新品</a></li>
+                <li class="active">商品</li>
+            </ol>
+            <!--商品图-->
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 model">
+                    <img class="img-responsive" src="img/tj1-lg.jpg" href="#">
+                </div>
+                <div class="col-xs-12 col-sm-6 model">
+                    <img class="img-responsive" src="img/tj1-lg.jpg" href="#">
+                </div>
+                <div class="col-xs-12 col-sm-6 model">
+                    <img class="img-responsive" src="img/tj1-lg.jpg" href="#">
+                </div>
+                <div class="col-xs-12 col-sm-6 model">
+                    <img class="img-responsive" src="img/tj1-lg.jpg" href="#">
+                </div>
+            </div>
+        </div>
+
+        <!--右侧布局-->
+        <div class="col-md-4 row-content " style="margin-top: 5.5%">
+            <div>
+                <h4>新品</h4>
+                <span class="price pull-right">¥ 83.00</span>
+            </div>
+            <h3>Moon Light 3D月球灯</h3>
+            <br>
+            <div>
+
+                <!--商品样式-->
+                <div class="color-images clearfix">
+                    <div class="color-img pull-left">
+                        <a href="">
+                            <img class="img-responsive" src="img/tj1-sm.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="color-img pull-left">
+                        <a href="">
+                            <img class="img-responsive" src="img/tj1-sm.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="color-img pull-left">
+                        <a href="">
+                            <img  class="img-responsive" src="img/tj1-sm.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="color-img pull-left">
+                        <a href="">
+                            <img class="img-responsive" src="img/tj1-sm.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="color-img pull-left">
+                        <a href="">
+                            <img class="img-responsive" src="img/tj1-sm.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="color-img pull-left">
+                        <a href="">
+                            <img class="img-responsive" src="img/tj1-sm.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <!--商品颜色,加入购物车-->
+                <div class="buy_tools">
+                    <h4>选择颜色</h4>
+                    <form action="">
+                        <div class="pull-left color_tool">
+                            <input type="radio" id="red-color" name="color" value="red" checked>
+                            <label for="red-color">红色</label>
+                        </div>
+                        <div class="pull-left color_tool">
+                            <input type="radio" id="black-color" name="color" value="black">
+                            <label for="black-color">黑色</label>
+                        </div>
+                        <div class="pull-left color_tool">
+                            <input type="radio" id="green-color" name="color" value="ddd">
+                            <label for="green-color">红色</label>
+                        </div>
+                        <div class="pull-left color_tool">
+                            <input type="radio" id="sd-color" name="color" value="fff">
+                            <label for="sd-color">黑色</label>
+                        </div>
+                        <div class="pull-left color_tool">
+                            <input type="radio" id="ddd-color" name="color" value="red">
+                            <label for="ddd-color">红色</label>
+                        </div>
+                        <div class="pull-left color_tool">
+                            <input type="radio" id="fff-color" name="color" value="black">
+                            <label for="fff-color">黑色</label>
+                        </div>
+                        <div class="pull-left color_tool ">
+                            <input type="radio" id="ggg-color" name="color" value="red">
+                            <label for="ggg-color">红色</label>
+                        </div>
+                        <div class="pull-left color_tool">
+                            <input type="radio" id="bla-color" name="color" value="black">
+                            <label for="bla-color">黑色</label>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="addToCart">
+                            <button class="addToCartBtn" ng-click="jump('/cart')">加入购物车</button>
+                            <button class="addToShouBtn pull-right glyphicon glyphicon-heart"></button>
+                        </div>
+                    </form>
+                </div>
+                <!--商品介绍-->
+                <p class="jieshao">
+                    现代的辅助技术能够识别并朗读由 CSS 生成的内容和特定的 Unicode 字符。为了避免 屏幕识读设备抓取非故意的和可能产生混淆的输出内容（尤其是当图标纯粹作为装饰用途时），我们为这些图标设置了 aria-hidden="true" 属性。
+                </p>
+                <!--手风琴商品更多信息-->
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default panel_jieshao">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h5 class="panel-title">
+                                <div class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="/#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
+                                    配送
+                                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                                </div>
+
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                部分城市提供当日达、次日达服务。
+                                会员或单笔订单满399普通达免运费。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default panel_jieshao">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h5 class="panel-title">
+                                <div class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="/#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    商品评价
+                                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                                </div>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                划线价格：划线的价格可能是商品的专柜价吊牌价或正品零售价指导价或该商品的曾经展示过的销售价等，仅供您参考。未划线价格：未划线的价格是商品在本平台上的销售标价，具体的成交价格可能因顾客使用优惠券、礼品卡等情况发生变化，最终以订单结算页价格为准
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default panel_jieshao">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h5 class="panel-title">
+                                <div class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="/#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                                    更多信息
+                                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                                </div>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                划线价格：划线的价格可能是商品的专柜价吊牌价或正品零售价指导价或该商品的曾经展示过的销售价等，仅供您参考。未划线价格：未划线的价格是商品在本平台上的销售标价，具体的成交价格可能因顾客使用优惠券、礼品卡等情况发生变化，最终以订单结算页价格为准
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'tpl/include/footer.html'"></div>

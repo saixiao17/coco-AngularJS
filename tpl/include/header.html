@@ -1,0 +1,185 @@
+<div class="container">
+    <!--导航条-->
+    <div id="slide-example" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-hide" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">
+                    <p>可可礼物网</p>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="nav-hide">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" id="nav-content">
+                    <li>
+                        <a href="">
+                            <span class="glyphicon glyphicon-home"></span>
+                            首页
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="#/myOrder">
+                            <span class="glyphicon glyphicon-sort-by-order"></span>
+                            我的订单
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span class="glyphicon glyphicon-heart"></span>
+                            个人收藏
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            消息
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-hide="userinfo" data-ng-controller="startCtrl" ng-click="jump('/start')" data-toggle="modal" data-target=".bs-example-modal-sm" href="">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span>登录{{userinfo}}</span>
+                        </a>
+                        <a ng-show="userinfo" data-ng-controller="startCtrl"  href="">
+                            <span class="glyphicon glyphicon-phone"></span>
+                            <span>{{userinfo}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-hide="userinfo" ng-click="jump('/start')" data-toggle="modal" data-target=".bs-reg-modal-sm" href="">
+                            <span class="glyphicon glyphicon-flag"></span>
+                            注册
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-show="userinfo" ng-click="submitExit()" href="" >
+                            <span class="glyphicon glyphicon-remove"></span>
+                            退出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 登陆模态框 -->
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content" style="color:white;outline: none">
+                        <div class="modal-header">
+                            <button  style="outline: none" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h3 class="modal-title" id="myModalLabel">
+                                登录
+                            </h3>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" ng-hide="successMsg || errorMsg">
+                                <div class="form-group">
+                                    <!--<label for="inputEmail3" class="col-sm-4 control-label">手机号</label>-->
+                                    <div class="col-sm-12">
+                                        <input ng-model="login.phone"  type="tel" class="form-control" id="phone" placeholder="手机号码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input ng-model="login.password" type="password" class="form-control" id="password" placeholder="密码">
+                                    </div>
+                                </div>
+                                <p>您登录表示您同意我们的<a href="">服务条款</a></p>
+                                <div class="form-group text-right modal-body-footer" >
+                                    <div class=" col-sm-12">
+                                        <button  ng-click="submitLogin()" style="outline: none" type="submit" class="btn btn-success text-left">登录我</button>
+                                        <!--<button type="button" data-dismiss="modal" class="btn btn-danger">退出</button>-->
+                                    </div>
+                                </div>
+                                <p>还<a href="">未注册</a>，稍后登录</p>
+                            </form>
+                            <p ng-show="successMsg">{{successMsg}}
+                                <a ng-click="jump('/start')" data-dismiss="modal" >返回首页</a>
+                                <!--<a  id="btn2" ng-click="jump('/start')" >返回首页</a>-->
+                            </p>
+                            <p ng-show="errorMsg">{{errorMsg}}</p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--注册模态框-->
+            <div class="modal fade bs-reg-modal-sm" id="createTask" tabindex="-1" role="dialog" aria-labelledby="myReg">
+                <div class="modal-dialog modal-md" role="document">
+                    <div class="modal-content" style="color:white;outline: none;">
+                        <div class="modal-header">
+                            <button  style="outline: none" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h3 class="modal-title" id="myReg">
+                                注册
+                            </h3>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" ng-hide="successMsg || errorMsg">
+                                <div class="form-group">
+                                    <!--<label for="inputEmail3" class="col-sm-4 control-label">手机号</label>-->
+                                    <div class="col-sm-12">
+                                        <input ng-model="reg.uphone" type="tel" class="form-control" id="uphone" placeholder="手机号">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input  ng-model="reg.uaddress" type="text" class="form-control" id="uaddress" placeholder="家庭地址">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input ng-model="reg.uname" type="text" class="form-control" id="uname" placeholder="真实姓名">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input ng-model="reg.upassword" type="password" class="form-control" id="upassword" placeholder="密码">
+                                    </div>
+                                </div>
+                                <p>您点击注册表示您同意我们的<a href="">服务条款</a></p>
+                                <div class="form-group text-right modal-body-footer" >
+                                    <div class=" col-sm-12">
+                                        <input ng-click="submitReg()" type="button" class="btn btn-success btn-block" value="提交订单">
+                                        <!--<button style="outline: none" ng-click="submitReg()" class="btn btn-success text-left">注册</button>-->
+                                        <!--<button type="button" data-dismiss="modal" class="btn btn-danger">退出</button>-->
+                                    </div>
+                                </div>
+                            </form>
+                            <p ng-show="successMsg">{{successMsg}}
+                                <a  data-dismiss="modal" >返回首页</a>
+                                <!--<a  id="btn2" ng-click="jump('/start')" >返回首页</a>-->
+                            </p>
+                            <p ng-show="errorMsg">{{errorMsg}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

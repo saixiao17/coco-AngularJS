@@ -1,0 +1,343 @@
+<div ng-include="'tpl/include/header.html'"></div>
+
+<div class="container">
+    <div class="row" id="cart-main">
+        <!--左侧部分-->
+        <div class=" col-xs-12 col-sm-7 col-sm-offset-1">
+            <!--购物车主页-->
+            <div class="chrome">
+                <!--<h2 class="chrome-head">您的购物车</h2>-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        您的购物车
+                    </div>
+                    <div class="panel-body">
+                        <table id="cartTable" class="cart table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="t-checkbox">
+                                        <label>
+                                            <input class="check-all check" type="checkbox" >ALL
+                                        </label>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr >
+                                    <td  class="goods"><label>
+                                        <input type="checkbox" class="check-one check" /></label>
+                                    </td>
+                                    <td>
+                                        <img class="img-responsive" src="img/tj1-cart.jpg" alt="">
+                                    </td>
+                                    <td style="display: block;padding-top: 5px" class="cart-title">
+                                        <h4>
+                                            <a href="baidu">3D 月球灯</a>
+                                        </h4>
+                                    </td>
+                                    <td class="selling-price number small-bold-red text-left" style="padding-top: 1.1rem;display: block;border-style: none" data-bind="83.00">
+                                    </td>
+                                    <td style="display: block">款式：#4643646-234</td>
+                                    <td style="display: block">颜色：红色</td>
+                                    <td class="cart-number" style="display: block;width: 100px">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon minus">-</span>
+                                            <input type="text" class="number form-control input-sm" value="1" />
+                                            <span class="input-group-addon plus">+</span>
+                                        </div>
+                                    </td>
+                                    <td class="subtotal number small-bold-red text-right" style="padding-top: 1.1rem;"></td>
+                                    <td class="action" style="padding-top: 1.1rem;">
+                                        <span class="delete btn btn-xs glyphicon glyphicon-trash">
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td  class="goods"><label>
+                                        <input type="checkbox" class="check-one check" /></label>
+                                    </td>
+                                    <td>
+                                        <img class="img-responsive" src="img/tj1-cart.jpg" alt="">
+                                    </td>
+                                    <td style="display: block;padding-top: 5px">
+                                        <h4>
+                                            <a href="">3D 月球灯</a>
+                                        </h4>
+                                    </td>
+                                    <td class="selling-price number small-bold-red text-left" style="padding-top: 1.1rem;display: block;border-style: none" data-bind="83.00">
+                                    </td>
+                                    <td style="display: block">款式：#4643646-234</td>
+                                    <td style="display: block">颜色：红色</td>
+                                    <td class="cart-number" style="display: block;width: 100px">
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-addon minus">-</span>
+                                            <input type="text" class="number form-control input-sm" value="1" />
+                                            <span class="input-group-addon plus">+</span>
+                                        </div>
+                                    </td>
+                                    <td class="subtotal number small-bold-red text-right" style="padding-top: 1.1rem;"></td>
+                                    <td class="action" style="padding-top: 1.1rem;">
+                                        <span class="delete btn btn-xs glyphicon glyphicon-trash">
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右侧部分-->
+        <div class="col-xs-12 col-sm-4 col-md-3" style="margin-top: 10px">
+            <div class="cart-summary">
+                <div style="line-height: 45px;border-style: none" >
+                    <label >
+                        <h4>小结信息</h4>
+                    </label>
+                </div>
+                <div >
+                    <label>商品型号：
+                        <span id="itemCount" class="large-bold-red" ></span>
+                    </label>
+                </div>
+                <div >
+                    <label>订单总数：
+                        <span id="qtyCount" class="large-bold-red" ></span>
+                    </label>
+                </div>
+                <div class="total">
+                    <label>金额合计:
+                        <span id="priceTotal" class="price-total large-bold-red">0.00</span>
+                    </label>
+                </div>
+                <div class="cart-sub">
+                    <a href="#" id="btn_settlement" type="button" disabled>去结算</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div ng-include="'tpl/include/footer.html'"></div>
+
+<script>
+    function supporthHtml5() {
+        return (typeof(Worker) !== "undefined") ? true : false;
+    }
+
+    function addfavorite(theUrl) {
+        if (document.all) {
+            window.external.addFavorite(theUrl, 'Emerson Web Order');
+        }
+        else if (window.sidebar) {
+            window.sidebar.addPanel('Emerson Web Order', theUrl, '');
+        }
+    }
+
+    $(document).ready(function() {
+        jQuery.ajaxSetup({cache:false});
+    });
+
+    //select all items
+    function selectAll() {
+        var aChecked = $(".select_all").prop("checked");
+        if (typeof(aChecked) == "undefined") {aChecked = false;}
+        $(".selectable").each(function() {
+            if (typeof($(this).attr("disabled")) == "undefined") {
+                var subchecked = $(this).prop("checked");
+                if (subchecked != aChecked) {
+                    $(this).prop("checked", aChecked);
+                }
+            }
+        });
+    }
+
+    function EnsureDecimal(e) {
+        e.value = e.value.replace(/[^\d.]/g,""); //先把非数字的都替换掉，除了数字和.
+        e.value = e.value.replace(/^\./g,""); //必须保证第一个为数字而不是.
+        e.value = e.value.replace(/\.{2,}/g,"."); //保证只有出现一个.而没有多个.
+        e.value = e.value.replace(".","$#$").replace(/\./g,"").replace("$#$","."); //保证.只出现一次，而不能出现两次以上
+    }
+
+    function EnsureInt() {
+        if (((event.keyCode < 48) || (event.keyCode > 57))) {
+            event.returnValue = false;
+        }
+    }
+
+    /**
+     * 金额按千位逗号分割
+     * @character_set UTF-8
+     * @author Jerry.li(hzjerry@gmail.com)
+     * @version 1.2014.08.24.2143
+     *  Example
+     *  <code>
+     *      alert($.formatMoney(1234.345, 2)); //=>1,234.35
+     *      alert($.formatMoney(-1234.345, 2)); //=>-1,234.35
+     *      alert($.unformatMoney(1,234.345)); //=>1234.35
+     *      alert($.unformatMoney(-1,234.345)); //=>-1234.35
+     *  </code>
+     */
+    !(function($)
+    {
+        $.extend({
+            /**
+             * 数字千分位格式化
+             * @public
+             * @param mixed mVal 数值
+             * @param int iAccuracy 小数位精度(默认为2)
+             * @return string
+             */
+            formatMoney:function(mVal, iAccuracy){
+                var fTmp = 0.00;//临时变量
+                var iFra = 0;//小数部分
+                var iInt = 0;//整数部分
+                var aBuf = new Array(); //输出缓存
+                var bPositive = true; //保存正负值标记(true:正数)
+                /**
+                 * 输出定长字符串，不够补0
+                 * <li>闭包函数</li>
+                 * @param int iVal 值
+                 * @param int iLen 输出的长度
+                 */
+                function funZero(iVal, iLen){
+                    var sTmp = iVal.toString();
+                    var sBuf = new Array();
+                    for(var i=0,iLoop=iLen-sTmp.length; i<iLoop; i++)
+                        sBuf.push('0');
+                    sBuf.push(sTmp);
+                    return sBuf.join('');
+                };
+
+                if (typeof(iAccuracy) === 'undefined')
+                    iAccuracy = 2;
+                bPositive = (mVal >= 0);//取出正负号
+                fTmp = (isNaN(fTmp = parseFloat(mVal))) ? 0 : Math.abs(fTmp);//强制转换为绝对值数浮点
+                //所有内容用正数规则处理
+                iInt = parseInt(fTmp); //分离整数部分
+                iFra = parseInt((fTmp - iInt) * Math.pow(10,iAccuracy) + 0.5); //分离小数部分(四舍五入)
+
+                do{
+                    aBuf.unshift(funZero(iInt % 1000, 3));
+                }while((iInt = parseInt(iInt/1000)));
+                aBuf[0] = parseInt(aBuf[0]).toString();//最高段区去掉前导0
+                return ((bPositive)?'':'-') + aBuf.join(',') +'.'+ ((0 === iFra)?'00':funZero(iFra, iAccuracy));
+            },
+            /**
+             * 将千分位格式的数字字符串转换为浮点数
+             * @public
+             * @param string sVal 数值字符串
+             * @return float
+             */
+            unformatMoney:function(sVal){
+                var fTmp = parseFloat(sVal.replace(/,/g, ''));
+                return (isNaN(fTmp) ? 0 : fTmp);
+            },
+        });
+    })(jQuery);
+
+    $(document).ready(function() {
+
+        /*
+         * 计算购物车中每一个产品行的金额小计
+         *
+         * 参数 row 购物车表格中的行元素tr
+         *
+         */
+        function getSubTotal(row) {
+            var price = parseFloat($(row).find(".selling-price").data("bind"));
+            var qty = parseInt($(row).find(":text").val());
+            var result = price * qty;
+            $(row).find(".selling-price").text($.formatMoney(price, 2));
+            $(row).find(".subtotal").text($.formatMoney(result, 2)).data("bind", result.toFixed(2));
+        };
+
+        /*
+         * 计算购物车中产品的累计金额
+         */
+        function getTotal() {
+            var qtyTotal = 0;
+            var itemCount = 0;
+            var priceTotal = 0;
+            $(cartTable).find("tr:gt(0)").each(function() {
+                getSubTotal(this);
+                if ($(this).find(":checkbox").prop("checked") == true) {
+                    itemCount++;
+                    qtyTotal += parseInt($(this).find(":text").val());
+                    priceTotal += parseFloat($(this).find(".subtotal").data("bind"));
+                }
+            });
+            $("#itemCount").text(itemCount).data("bind", itemCount);
+            $("#qtyCount").text(qtyTotal).data("bind", qtyTotal);
+            $("#priceTotal").text($.formatMoney(priceTotal, 2)).data("bind", priceTotal.toFixed(2));
+        };
+
+        var cartTable = $("#cartTable");
+
+        getTotal();
+
+        //为每一个勾选框指定单击事件
+        $(cartTable).find(":checkbox").click(function() {
+            //全选框单击
+            if ($(this).hasClass("check-all")) {
+                var checked = $(this).prop("checked");
+                $(cartTable).find(".check-one").prop("checked", checked);
+            }
+
+            //如果手工一个一个的点选了所有勾选框，需要自动将“全选”勾上或是取消
+            var items = cartTable.find("tr:gt(0)");
+            $(cartTable).find(".check-all").prop("checked", items.find(":checkbox:checked").length == items.length);
+            //设置结算按钮disabled属性
+            $("#btn_settlement").attr("disabled", items.find(":checkbox:checked").length == 0);
+
+            getTotal();
+        });
+
+        //为数量调整的＋ －号提供单击事件，并重新计算产品小计
+        /*
+         * 为购物车中每一行绑定单击事件，以及每行中的输入框绑定键盘事件
+         * 根据触发事件的元素执行不同动作
+         *   增加数量
+         *   减少数量
+         *   删除产品
+         *
+         */
+        $(cartTable).find("tr:gt(0)").each(function() {
+            var input = $(this).find(":text");
+
+            //为数量输入框添加事件，计算金额小计，并更新总计
+            $(input).keyup(function() {
+                var val = parseInt($(this).val());
+                if (isNaN(val) || (val < 1)) { $(this).val("1"); }
+                getSubTotal($(this).parent().parent()); //tr element
+                getTotal();
+            });
+
+            //为数量调整按钮、删除添加单击事件，计算金额小计，并更新总计
+            $(this).click(function() {
+                var val = parseInt($(input).val());
+                if (isNaN(val) || (val < 1)) { val = 1; }
+
+                if ($(window.event.srcElement).hasClass("minus")) {
+                    if (val > 1) val--;
+                    input.val(val);
+                    getSubTotal(this);
+                }
+                else if ($(window.event.srcElement).hasClass("plus")) {
+                    if (val < 9999) val++;
+                    input.val(val);
+                    getSubTotal(this);
+                }
+                else if ($(window.event.srcElement).hasClass("delete")) {
+                    if (confirm("确定要从购物车中删除此产品？")) {
+                        $(this).remove();
+                    }
+                }
+                getTotal();
+            });
+        });
+    });
+</script>
