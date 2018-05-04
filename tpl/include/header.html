@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li class="active">
-                        <a href="#/myOrder">
+                        <a href="#/order">
                             <span class="glyphicon glyphicon-sort-by-order"></span>
                             我的订单
                         </a>
@@ -60,7 +60,7 @@
                         </a>
                         <a ng-show="userinfo" data-ng-controller="startCtrl"  href="">
                             <span class="glyphicon glyphicon-phone"></span>
-                            <span>{{userinfo}}</span>
+                            <span style="color:blue">{{userinfo}}</span>
                         </a>
                     </li>
                     <li>
@@ -162,9 +162,7 @@
                                 <p>您点击注册表示您同意我们的<a href="">服务条款</a></p>
                                 <div class="form-group text-right modal-body-footer" >
                                     <div class=" col-sm-12">
-                                        <input ng-click="submitReg()" type="button" class="btn btn-success btn-block" value="提交订单">
-                                        <!--<button style="outline: none" ng-click="submitReg()" class="btn btn-success text-left">注册</button>-->
-                                        <!--<button type="button" data-dismiss="modal" class="btn btn-danger">退出</button>-->
+                                        <input ng-click="submitReg()" type="button" class="btn btn-success btn-block" value="注册">
                                     </div>
                                 </div>
                             </form>

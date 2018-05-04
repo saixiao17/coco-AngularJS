@@ -135,13 +135,26 @@
   background: rgb(238,216,37);
 }
 
+.container .row-news .row-news-items{
+  box-shadow: 5px 5px 2px #555;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+}
+
+.container .row-news .row-news-items:hover{
+  border: 2px solid #555;
+}
+
+.container .row-news .row-news-items a{
+  display: block;
+}
+
 .container .row-news .row-news-items a:hover{
   text-decoration:none;
 }
 
 .container .row-news .row-news-items dt img{
   width: 100%;
-  height: 75%;
 }
 
 .container .row-news .row-news-items dd ul{
@@ -289,7 +302,11 @@
 
 .container .show-main .row .model img{
   margin: 4%;
-  //border: 1px solid #555;
+  border: 15px solid rgb(197,196,207);
+}
+
+.container .show-main .row .model img:hover{
+  border: 15px solid #555;
 }
 
 .container .show-main .row-content h4{
@@ -816,6 +833,26 @@ table.cart tbody .selling-price:after, table.cart tbody .subtotal:after
 .container #slide-example .modal .modal-content a:hover{
   text-decoration: none;
   outline: none;
+}
+
+div.container div.show-main .row-content .buy_tools>div a{
+  width: 100%;
+  height: 50px;
+  background: black ;
+  display: block;
+  text-decoration: none;
+  color: white;
+  font-size: 1.2em;
+  line-height: 50px;
+  text-align: center;
+}
+div.container div.show-main .row-content .buy_tools>div a:hover{
+  text-decoration: none;
+  opacity: .7;
+}
+
+div.container div.show-main .row-content .buy_tools>div{
+  margin: 6% 0;
 }
 
 

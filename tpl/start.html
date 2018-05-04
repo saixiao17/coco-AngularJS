@@ -85,52 +85,36 @@
             <span></span>
         </div>
         <div class="news-content">
-            <div class="col-sm-6 col-md-3 row-news-items">
-                <a href="#/show">
+            <div ng-repeat="commodity in commodityList" class="col-sm-6 col-md-3 row-news-items ">
+                <a href="#/show/{{commodity.cid}}">
                     <dl>
                         <dt>
-                            <img class="img-responsive" src="img/sp1.png" alt="">
+                            <img class="img-responsive" ng-src="img/{{commodity.cimg_lg1}}">
                         </dt>
                         <dd>
                             <ul>
-                                <li >商品名</li>
-                                <li >价格</li>
+                                <li >商品名:{{commodity.cname}}</li>
+                                <li >价格:{{commodity.cprice}}</li>
                             </ul>
                         </dd>
                     </dl>
                 </a>
             </div>
-            <div class="col-sm-6 col-md-3 row-news-items">
-                <dl>
-                    <dt>
-                        <img class="img-responsive" src="img/xp2.jpg" alt="">
-                    </dt>
-                    <dd>
-                        <ul>
-                            <li >商品名</li>
-                            <li >价格</li>
-                        </ul>
-                    </dd>
-                </dl>
-            </div>
-            <div class="col-sm-6 col-md-3 row-news-items">
-                <dl>
-                    <dt>
-                        <img class="img-responsive" src="img/xp3.jpg" alt="">
-                    </dt>
-                    <dd>
-                        <ul>
-                            <li >商品名</li>
-                            <li >价格</li>
-                        </ul>
-                    </dd>
-                </dl>
-            </div>
-            <div class="col-sm-6 col-md-3 row-news-items ">
+            <div ng-show="hasMore" ng-click="loadMore()" class="col-sm-6 col-md-3 row-news-items">
                 <dl>
                     <dt>
                         <img class="img-responsive" src="img/next.jpg" alt="">
                     </dt>
+                </dl>
+            </div>
+            <div ng-hide="hasMore" class="col-sm-6 col-md-3 row-news-items">
+                <dl>
+                    <dt>
+                        <img class="img-responsive" src="img/theend.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <h4 style="text-align: center;color: green">所有数据加载完毕</h4>
+                    </dd>
                 </dl>
             </div>
         </div>

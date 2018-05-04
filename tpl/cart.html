@@ -23,51 +23,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr >
+                                <tr ng-repeat="cart in cartList">
                                     <td  class="goods"><label>
                                         <input type="checkbox" class="check-one check" /></label>
                                     </td>
                                     <td>
-                                        <img class="img-responsive" src="img/tj1-cart.jpg" alt="">
+                                        <img class="img-responsive" ng-src="img/{{cart.cimg_cart}}" alt="">
                                     </td>
                                     <td style="display: block;padding-top: 5px" class="cart-title">
                                         <h4>
-                                            <a href="baidu">3D 月球灯</a>
+                                            <a href="#/start">{{cart.cname}}</a>
                                         </h4>
                                     </td>
-                                    <td class="selling-price number small-bold-red text-left" style="padding-top: 1.1rem;display: block;border-style: none" data-bind="83.00">
+                                    <td class="selling-price number small-bold-red text-left" style="padding-top: 1.1rem;display: block;border-style: none" data-bind="{{cart.cprice}}">
                                     </td>
-                                    <td style="display: block">款式：#4643646-234</td>
-                                    <td style="display: block">颜色：红色</td>
-                                    <td class="cart-number" style="display: block;width: 100px">
-                                        <div class="input-group input-group-sm">
-                                            <span class="input-group-addon minus">-</span>
-                                            <input type="text" class="number form-control input-sm" value="1" />
-                                            <span class="input-group-addon plus">+</span>
-                                        </div>
-                                    </td>
-                                    <td class="subtotal number small-bold-red text-right" style="padding-top: 1.1rem;"></td>
-                                    <td class="action" style="padding-top: 1.1rem;">
-                                        <span class="delete btn btn-xs glyphicon glyphicon-trash">
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr >
-                                    <td  class="goods"><label>
-                                        <input type="checkbox" class="check-one check" /></label>
-                                    </td>
-                                    <td>
-                                        <img class="img-responsive" src="img/tj1-cart.jpg" alt="">
-                                    </td>
-                                    <td style="display: block;padding-top: 5px">
-                                        <h4>
-                                            <a href="">3D 月球灯</a>
-                                        </h4>
-                                    </td>
-                                    <td class="selling-price number small-bold-red text-left" style="padding-top: 1.1rem;display: block;border-style: none" data-bind="83.00">
-                                    </td>
-                                    <td style="display: block">款式：#4643646-234</td>
-                                    <td style="display: block">颜色：红色</td>
+                                    <!--<td style="display: block">订单编号：{{cart.cart_id}}</td>-->
+                                    <td style="display: block">加入购物车时间：{{cart.cart_time|date:'yy-MM-dd HH:mm'}}</td>
+                                    <td style="display: block">颜色：{{cart.cart_color}} &nbsp;&nbsp;订单编号：{{cart.cart_id}}</td>
                                     <td class="cart-number" style="display: block;width: 100px">
                                         <div class="input-group input-group-sm">
                                             <span class="input-group-addon minus">-</span>
@@ -83,6 +55,8 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <button ng-show="hasMore" ng-click="loadMore()" class="btn btn-success btn-block">加载更多</button>
+                        <p ng-hide="hasMore">所有数据加载完毕</p>
 
 
                     </div>
@@ -97,24 +71,64 @@
                         <h4>小结信息</h4>
                     </label>
                 </div>
-                <div >
-                    <label>商品型号：
-                        <span id="itemCount" class="large-bold-red" ></span>
-                    </label>
-                </div>
-                <div >
-                    <label>订单总数：
-                        <span id="qtyCount" class="large-bold-red" ></span>
-                    </label>
-                </div>
-                <div class="total">
-                    <label>金额合计:
-                        <span id="priceTotal" class="price-total large-bold-red">0.00</span>
-                    </label>
-                </div>
-                <div class="cart-sub">
-                    <a href="#" id="btn_settlement" type="button" disabled>去结算</a>
-                </div>
+                <form action="">
+                    <div style="padding: 5% 0">
+                        <label >购物车订单号：</label>
+                        <label ng-repeat="cart in cartList" class="checkbox-inline">
+                            <span id="oid_span" ng-model="order.oid">{{cart.cart_id}}</span>
+                            <input name="onid_input" id="oid_input" ng-model="order.oid" style="display: none" type="checkbox" value="">
+                            <!--<input id="123" ng-model="order.oid" type="checkbox" value="{{cart.cart_id}}"> {{cart.cart_id}}-->
+                        </label>
+                    </div>
+                    <div >
+                        <label>商品数量：
+                            <span ng-model="order.onum"  id="onum_span" class="large-bold-red" ></span>
+                            <input name="onum_input" ng-model="order.onum" id="onum_input" type="text" class="large-bold-red" >
+                        </label>
+                    </div>
+                    <div >
+                        <label>订单总数：
+                            <span ng-model="order.ocount" id="ocount_span" class="large-bold-red" ></span>
+                            <input name="ocount_input" ng-model="order.ocount" id="ocount_input" style="display: none" type="text" class="large-bold-red" >
+                        </label>
+                    </div>
+                    <div class="total">
+                        <label>金额合计:
+                            <span ng-model="order.ototal" id="ototal_span" class="price-total large-bold-red">0.00</span>
+                            <input name="ototal_input" ng-model="order.ototal" id="ototal_input" style="display: none" type="text" class="price-total large-bold-red"  >
+                            <!--<span id="itcount"></span>-->
+                        </label>
+                    </div>
+                    <div class="cart-sub">
+                        <!--<a href="#" id="btn_settlement" type="button" disabled>支付</a>-->
+                        <input ng-click="submitOrder()" id="btn_settlement"  type="button"  value="支付">
+                    </div>
+                </form>
+                <!--<div style="padding: 5% 0">-->
+                    <!--<label for="name">购物车订单号：</label>-->
+                    <!--<label ng-repeat="cart in cartList" class="checkbox-inline">-->
+                        <!--<input type="checkbox" id="inlineCheckbox1" value="{{cart.cart_id}}"> {{cart.cart_id}}-->
+                    <!--</label>-->
+                <!--</div>-->
+                <!--<div >-->
+                    <!--<label>商品数量：-->
+                        <!--<span id="itemCount" class="large-bold-red" ></span>-->
+                    <!--</label>-->
+                <!--</div>-->
+                <!--<div >-->
+                    <!--<label>订单总数：-->
+                        <!--<span id="qtyCount" class="large-bold-red" ></span>-->
+                    <!--</label>-->
+                <!--</div>-->
+                <!--<div class="total">-->
+                    <!--<label>金额合计:-->
+                        <!--<span id="priceTotal" class="price-total large-bold-red">0.00</span>-->
+                        <!--<span id="itcount"></span>-->
+                    <!--</label>-->
+                <!--</div>-->
+                <!--<div class="cart-sub">-->
+                    <!--<a href="#" id="btn_settlement" type="button" disabled>支付</a>-->
+                <!--</div>-->
             </div>
         </div>
 
@@ -270,9 +284,35 @@
                     priceTotal += parseFloat($(this).find(".subtotal").data("bind"));
                 }
             });
-            $("#itemCount").text(itemCount).data("bind", itemCount);
-            $("#qtyCount").text(qtyTotal).data("bind", qtyTotal);
-            $("#priceTotal").text($.formatMoney(priceTotal, 2)).data("bind", priceTotal.toFixed(2));
+             $("#onum_span").text(itemCount).data("bind", itemCount);
+            // $("#itemCount").text(itemCount)
+            $("#ocount_span").text(qtyTotal).data("bind", qtyTotal);
+            $("#ototal_span").text($.formatMoney(priceTotal, 2)).data("bind", priceTotal.toFixed(2));
+           // document.getElementById("itcount").innerHTML = itemCount;
+            //document.getElementById("itcount").innerHTML = qtyTotal;
+            // console.log(itemCount)
+            // document.getElementById("itcount").valueOf("100");
+            var oid_span=document.getElementById("oid_span").innerHTML;
+            var onum_span=document.getElementById("onum_span").innerHTML;
+            var ocount_span=document.getElementById("ocount_span").innerHTML;
+            var ototal_span=document.getElementById("ototal_span").innerHTML;
+
+            var oid_input=document.getElementById("oid_input").value=oid_span;
+            var onum_input=document.getElementById("onum_input").value=onum_span;
+            var ocount_input=document.getElementById("ocount_input").value=ocount_span;
+            var ototal_input=document.getElementById("ototal_input").value=ototal_span;
+            var oooo = document.getElementById('onum_input').value
+            console.log('order');
+            console.log('订单编号'+oid_span);
+            console.log('商品数量'+onum_span);
+            console.log('订单总数'+ocount_span);
+            console.log('合计金额'+ototal_span);
+            console.log('订单编号'+oid_input);
+            console.log('商品数量'+onum_input);
+            console.log('订单总数'+ocount_input);
+            console.log('合计金额'+ototal_input);
+            console.log(oooo);
+            console.log('end');
         };
 
         var cartTable = $("#cartTable");
